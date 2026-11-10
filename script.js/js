@@ -1,0 +1,38 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const menuItems = document.querySelectorAll('.menu-item');
+    const sections = document.querySelectorAll('.tab-section');
+
+    document.getElementById('inicio').classList.add('ativa');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const targetId = item.getAttribute('href').substring(1);
+
+            sections.forEach(sec => sec.classList.remove('ativa'));
+
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('ativa');
+            }
+        });
+    });
+});
+
+function abrirImagem(caminhoDaImagem) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    if (lightbox && lightboxImg) {
+        lightboxImg.src = caminhoDaImagem;
+        lightbox.classList.add('aberto');
+    }
+}
+
+function fecharImagem() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('aberto');
+    }
+}
